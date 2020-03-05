@@ -1,2 +1,2 @@
 # Data-Visualization
- Data Visualization
+![](figure_1.png)
