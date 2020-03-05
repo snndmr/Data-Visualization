@@ -1,55 +1,87 @@
-from matplotlib import pyplot
-from matplotlib import ticker
+import pandas
+from matplotlib import pyplot, ticker
 
+excel_data_df = pandas.read_excel('last.xlsx')
+
+
+# To draw graph
 
 def formatter(y, pos):
     if y == 2:
-        return 'AI Data'
+        return 'System Response'
     elif y == 1:
         return 'Test Data'
     elif y == 0:
-        return 'Comparison Data'
+        return 'Comparison'
     else:
         return ""
 
 
-flag = None
+def draw_background(y, init, end):
+    pyplot.hlines(y, init, end, colors='gray', lw=40)
 
 
-def drawline(y, init_x, end_x, ok):
-    global flag
-    if flag is None:
-        flag = ok
-
-    color = 'g' if ok else 'r'
-    pyplot.hlines(y, init_x, end_x, colors=color, linewidth=10)
-    if flag != ok:
-        pyplot.vlines(init_x, y + 0.2, y - 0.2, colors='b', linewidth=1)
-        flag = ok
+def draw_detected(y, init, end):
+    pyplot.hlines(y, init, end, colors='black', lw=40)
+    # pyplot.vlines(end, y + 0.3, y - 0.3, colors='r', linewidth=.1)
+    # pyplot.vlines(init, y + 0.3, y - 0.3, colors='r', linewidth=.1)
 
 
-aiData = list()
-testData = list()
-comparisonData = list()
+# To assign data.
 
-for i in range(100):
-    aiData.append([2, i, i + 1, True if 10 < i < 40 or 60 < i < 80 else False])
-for i in range(100):
-    testData.append([1, i, i + 1, True if 15 < i < 25 or 30 < i < 65 else False])
+flag = False
+temp = 0
 
-for i in aiData:
-    drawline(i[0], i[1], i[2], i[3])
+AI = list()
+TEST = list()
+COMP = list()
 
-flag = None
-for i in testData:
-    drawline(i[0], i[1], i[2], i[3])
+for order, i in enumerate(excel_data_df['AI'].tolist()):
+    if i >= 0.5 and flag is False:
+        temp = order
+        flag = True
+    elif i < 0.5 and flag is True:
+        AI.append([temp, order])
+        flag = False
 
-flag = None
-for i in range(len(aiData)):
-    if aiData[i][3] is not testData[i][3]:
-        drawline(0, aiData[i][1], aiData[i][2], False)
-    else:
-        drawline(0, aiData[i][1], aiData[i][2], True)
+for order, i in enumerate(excel_data_df['TEST'].tolist()):
+    if i == "'drone'" and flag is False:
+        temp = order
+        flag = True
+    elif i != "'drone'" and flag is True:
+        TEST.append([temp, order])
+        flag = False
 
+draw_background(2, 0, len(excel_data_df['AI'].tolist()))
+for i, j in AI:
+    draw_detected(2, i, j)
+
+draw_background(1, 0, len(excel_data_df['TEST'].tolist()))
+for i, j in TEST:
+    draw_detected(1, i, j)
+
+for order, (i, j) in enumerate(zip(excel_data_df['AI'].tolist(), excel_data_df['TEST'].tolist())):
+    x = 0
+    y = 0
+    x = 1 if i >= 0.5 else 0
+    y = 1 if j == "'drone'" else 0
+
+    if x == y and flag is False:
+        temp = order
+        flag = True
+    elif x != y and flag is True:
+        COMP.append([temp, order])
+        flag = False
+
+for i, j in COMP:
+    draw_detected(0, i, j)
+
+pyplot.plot(0, 0, 'black', label='Drone', lw=5)
+pyplot.plot(0, 0, 'gray', label='Nodrone', lw=5)
+
+pyplot.legend(prop={'size': 20})
+pyplot.yticks(fontsize=18)
+pyplot.xticks(fontsize=18)
 pyplot.gca().yaxis.set_major_formatter(ticker.FuncFormatter(formatter))
+pyplot.ylim([-1, 3])
 pyplot.show()
