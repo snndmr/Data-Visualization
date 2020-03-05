@@ -1,7 +1,7 @@
 import pandas
 from matplotlib import pyplot, ticker
 
-excel_data_df = pandas.read_excel('last.xlsx')
+excel_data_df = pandas.read_excel('dataTwo.xlsx')
 
 
 # To draw graph
@@ -23,8 +23,6 @@ def draw_background(y, init, end):
 
 def draw_detected(y, init, end):
     pyplot.hlines(y, init, end, colors='black', lw=40)
-    # pyplot.vlines(end, y + 0.3, y - 0.3, colors='r', linewidth=.1)
-    # pyplot.vlines(init, y + 0.3, y - 0.3, colors='r', linewidth=.1)
 
 
 # To assign data.
@@ -72,12 +70,13 @@ for order, (i, j) in enumerate(zip(excel_data_df['AI'].tolist(), excel_data_df['
     elif x != y and flag is True:
         COMP.append([temp, order])
         flag = False
+COMP.append([temp, len(excel_data_df['TEST'].tolist())])
 
 for i, j in COMP:
     draw_detected(0, i, j)
 
 pyplot.plot(0, 0, 'black', label='Drone', lw=5)
-pyplot.plot(0, 0, 'gray', label='Nodrone', lw=5)
+pyplot.plot(0, 0, 'gray', label='No Drone', lw=5)
 
 pyplot.legend(prop={'size': 20})
 pyplot.yticks(fontsize=18)

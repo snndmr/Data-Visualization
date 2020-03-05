@@ -1,2 +1,3 @@
 ## Data Visualization
-![](Figure_1.png)
+![](FigureOne.png)
+![](FigureTwo.png)
