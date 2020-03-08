@@ -10,8 +10,8 @@
 - ### First learning with 10318 data
 ![](Figure_3.png)
 
-- ### First learning with 10318 data
+- ### First learning
 ![](Figure_4.png)
 
-- ### First learning with 10318 data
+- ### First learning
 ![](Figure_5.png)
