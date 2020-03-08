@@ -1,17 +1,17 @@
 # Data Visualization
 
 
-- ### First learning with 4354 data
+- ### dataOne
 ![](Figure_1.png)
 
-- ### Second learning with 4354 data
+- ### dataTwo
 ![](Figure_2.png)
 
-- ### First learning with 10318 data
+- ### dataThree
 ![](Figure_3.png)
 
-- ### First learning
+- ### dataFour
 ![](Figure_4.png)
 
-- ### First learning
+- ### dataFive
 ![](Figure_5.png)
