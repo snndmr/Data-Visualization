@@ -8,10 +8,8 @@ test = pandas.read_excel('test.xlsx')['TEST'].tolist()
 
 
 def formatter(y, pos):
-    if y == 4:
+    if y == 3:
         return 'AI B2G'
-    elif y == 3:
-        return 'AI B&G'
     elif y == 2:
         return 'Test B&G'
     elif y == 1:
@@ -148,23 +146,18 @@ def draw_intervals_black_gray(y, intervals):
                 pyplot.hlines(y, j[0], j[1] + 1, colors='black', lw=50)
 
 
-# for i in range(len(COLORS)):
-#     pyplot.plot(0, 0, color=COLORS[i], label=(i / 10, (i + 1) / 10), lw=5)
-#
-# pyplot.legend(prop={'size': 16})
-# pyplot.yticks(fontsize=18)
-# pyplot.xticks(fontsize=18)
-# pyplot.gca().yaxis.set_major_formatter(ticker.FuncFormatter(formatter))
-#
-# for i in range(1, 5):
-#     pyplot.hlines(i, 0, len(ai), colors=COLORS[5], lw=50)
-#
-# draw_intervals_black2gray(4, get_intervals(ai))
-# draw_intervals_black_gray(3, get_intervals(ai))
-# draw_intervals_black_gray(2, get_test_intervals(test))
-# draw_intervals_black_gray(1, get_comparision_intervals(ai, test))
-#
-# pyplot.ylim([0, 5])
-# pyplot.xlim([-1500, len(ai) + 1500])
-# pyplot.show()
-display_ai_intervals(ai)
+for i in range(len(COLORS)):
+    pyplot.plot(0, 0, color=COLORS[i], label=(i / 10, (i + 1) / 10), lw=5)
+
+pyplot.legend(prop={'size': 16})
+pyplot.yticks(fontsize=18)
+pyplot.xticks(fontsize=18)
+pyplot.gca().yaxis.set_major_formatter(ticker.FuncFormatter(formatter))
+
+draw_intervals_black2gray(3, get_intervals(ai))
+draw_intervals_black_gray(2, get_test_intervals(test))
+draw_intervals_black_gray(1, get_comparision_intervals(ai, test))
+
+pyplot.ylim([0, 4])
+pyplot.xlim([-1000, len(ai) + 1000])
+pyplot.show()
