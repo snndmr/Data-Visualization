@@ -7,4 +7,4 @@
 ![](Figure_2.png)
 
 ### #3 
-![](Figure_3_.png)
+![](Figure_3.png)
