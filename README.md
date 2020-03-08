@@ -1,10 +1,10 @@
 ## Data Visualization
 
 ### #1
-![](FigureOne.png)
+![](Figure_1.png)
 
 ### #2
-![](FigureTwo.png)
+![](Figure_2.png)
 
-### #3 -added gradient effect with b2g
-![](FigureThree.png)
+### #3
+![](Figure_3.png)
