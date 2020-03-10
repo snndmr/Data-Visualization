@@ -87,12 +87,15 @@ def formatter(y, pos):
         return ''
 
 
-excel_data = pandas.read_excel('dataFive.xlsx', header=None)
+excel_data = pandas.read_excel('b10.03.2020.xlsx', header=None)
 ai = excel_data[0].tolist()
 test = excel_data[1].tolist()
-info = excel_data[2].dropna().tolist()
 
-draw_info(info)
+try:
+    draw_info(excel_data[2].dropna().tolist())
+except KeyError:
+    print("There is no specification")
+
 draw_lines(3, get_intervals(ai))
 draw_lines(2, get_intervals(test))
 draw_lines(1, get_comparision_intervals(ai, test))
