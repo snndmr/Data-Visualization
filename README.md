@@ -2,16 +2,16 @@
 
 
 - ### dataOne
-![](Figure_1.png)
+![](output/Figure_1.png)
 
 - ### dataTwo
-![](Figure_2.png)
+![](output/Figure_2.png)
 
 - ### dataThree
-![](Figure_3.png)
+![](output/Figure_3.png)
 
 - ### dataFour
-![](Figure_4.png)
+![](output/Figure_4.png)
 
 - ### dataFive
-![](Figure_5.png)
+![](output/Figure_5.png)
